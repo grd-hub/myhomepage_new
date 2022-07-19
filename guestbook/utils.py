@@ -68,6 +68,7 @@ def check_page_view(request):
 
 
 def add_fifty():
+
     author = [
         'Robert N. Charrette', 'Nigel Findley', 'Chris Kubasik', 'Carl Sargent', 'Hans Joachim Alpers', 'Tom Dowd',
         'Nyx Smith', 'Marc Gascoigne', 'Caroline Spector', 'Mel Odom', 'Jak Koke', 'Lisa Smedman', 'Nick Polotta',
@@ -92,17 +93,16 @@ def add_fifty():
            ' fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt' \
            ' mollit anim id est laborum.'
 
-    write_entry = Guestbook(author='GOD', title='this is GOOOOOD', text='if you read this')
-    write_entry.save()
-
-
-'''
-    for entry in range(1):
+    for new_entry in range(50):
         new_random_int = random.randint(0, 25)
         new_random_int_2 = random.randint(0, 26)
-        write_entry = Guestbook.objects.create(
-            author=author[new_random_int],
-            title=title[new_random_int_2],
-            text=text)
+        write_entry = Guestbook(author=author[new_random_int],
+                                title=title[new_random_int_2],
+                                text=text,
+                                is_generic=True)
         write_entry.save()
-'''
+
+
+def delete_all_generic_entries():
+    delete_entries = Guestbook.objects.filter(is_generic=True)
+    delete_entries.delete()

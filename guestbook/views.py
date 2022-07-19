@@ -1,12 +1,13 @@
+from django.contrib import messages
 from django.core.paginator import Paginator
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views.generic import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from .filters import GuestbookFilter
 from .models import Guestbook
+from .filters import GuestbookFilter
 
-from .utils import check_order_group, check_entries_per_page, check_page_view, add_fifty
+from .utils import check_order_group, check_entries_per_page, check_page_view, add_fifty, delete_all_generic_entries
 
 
 class GuestbookDeleteView(DeleteView):
@@ -44,18 +45,19 @@ class GuestbookDetailview(DetailView):
 def list_entries_final(request):
 
     if 'add' in request.POST:
-        print("I should add 50")
-        add_fifty()
+
+        number_of_generic_entries = Guestbook.objects.filter(is_generic=True).count()
+
+        if number_of_generic_entries + 50 >= 101:
+            messages.add_message(request, messages.WARNING, 'The maximum are 100 generic entries.')
+            return redirect('guestbook:list_entries_final')
+        else:
+            add_fifty()
+
+    if 'delete' in request.POST:
+
+        delete_all_generic_entries()
         return redirect('guestbook:list_entries_final')
-
-
-
-    print()
-    print('------------------------------------------------------------')
-    print('Request GET data:')
-    print(request.GET)
-    print()
-    print('------------------------------------------------------------')
 
     if 'order_group' and 'entries_per_page' and 'view_group' in request.GET:
 
@@ -81,6 +83,7 @@ def list_entries_final(request):
             'order_radio_button': order_radio_button,
             'entries_per_page': entries_per_page,
             'page_view': page_view,
+            'sum_all_entries': sum_all_entries,
         }
         return render(request, 'guestbook/guestbook_css_grid_final.html', context)
 
@@ -95,9 +98,12 @@ def list_entries_final(request):
         guestbook_page_obj = paginated_filtered_guestbook.get_page(page_number)
         nums = "a" * guestbook_page_obj.paginator.num_pages
 
+        sum_all_entries = Guestbook.objects.count()
+
         context = {
             'filtered_guestbook': filtered_guestbook,
             'guestbook_page_obj': guestbook_page_obj,
             'nums': nums,
+            'sum_all_entries': sum_all_entries
         }
         return render(request, 'guestbook/guestbook_css_grid_final.html', context)

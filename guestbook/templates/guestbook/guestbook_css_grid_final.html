@@ -30,33 +30,34 @@
     </style>
 {% endif %}
 
+{% for message in messages %}
+    <div class="alert">
+        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+        <strong>{{ message }}</strong>
+    </div>
+{% endfor %}
+
 <div id="css_grid_base">
 
     <div class="item_header">
-        <a class="main_button" href="{% url 'guestbook:guestbook_createview' %}">
+        <a class="main_link" href="{% url 'guestbook:guestbook_createview' %}">
             <p><strong>ADD ENTRY</strong></p>
-        </a>
-
-        <a class="main_button" href="">
-            <p><strong>ADD 50 GENERIC ENTRIES</strong></p>
         </a>
 
         <form method="POST" action="">
             {% csrf_token %}
             <input name="add" value="50" hidden type="text">
-            <button type="submit"><strong>ADD 50 GENERIC ENTRIES</strong></button>
+            <button class="main_button" type="submit"><strong>ADD 50 GENERIC ENTRIES</strong></button>
         </form>
 
-
-
-
-        <a class="main_button" href="">
-            <p><strong>DELETE ALL GENERIC ENTRIES</strong></p>
-        </a>
-
+        <form method="POST" action="">
+            {% csrf_token %}
+            <input name="delete" value="generic" hidden type="text">
+            <button class="main_button" type="submit"><strong>DELETE ALL GENERIC ENTRIES</strong></button>
+        </form>
 
         <button id="btn-col" type="button" class="collapsible">
-            <strong>FILTER ENTRIES</strong>
+            <strong>FILTER ENTRIES({{ sum_all_entries }})</strong>
         </button>
 
         <section id="filter" class="content">

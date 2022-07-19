@@ -94,16 +94,15 @@ textarea {
 
 
 /* --- START MAIN BUTTONS ---  */
-.main_button {
+.main_link {
     display: block;
     text-decoration: none;
     margin-top: 1rem;
-
 }
-.main_button p:hover {
+.main_link p:hover {
     background-color: #ccc;
 }
-.main_button p {
+.main_link p {
     color: white;
     background: dodgerblue;
     height: 33px;
@@ -111,14 +110,48 @@ textarea {
     align-items: center;
     justify-content: center;
 }
+.main_button {
+    margin-top: 1rem;
+    height: 33px;
+    width: 100%;
+    border: none;
+    background: dodgerblue;
+    font-size: 1rem;
+    color: white;
+}
+.main_button:hover {
+    background-color: #ccc;
+}
 /* --- END MAIN BUTTONS ---  */
+
+
+/* --- START MESSAGES --- */
+.alert {
+  padding: 20px;
+  background-color: DarkSalmon;
+  color: white;
+}
+
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.closebtn:hover {
+  color: black;
+}
+/* --- END MESSAGES --- */
 
 
 /* --- START FILTER AREA --- */
 #filter {
     border: 1px solid black;
     width: 50%;
-
     margin: 0 auto;
     z-index: 1;
 }

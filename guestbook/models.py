@@ -13,6 +13,7 @@ class Guestbook(models.Model):
     text = models.TextField(max_length=3000)
     date_create = models.DateTimeField(auto_now_add=True, null=True)
     slug = models.SlugField(blank=True, null=True)
+    is_generic = models.BooleanField(default=False)
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
