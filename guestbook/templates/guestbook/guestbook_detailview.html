@@ -1,0 +1,14 @@
+{% extends 'guestbook/base.html' %}
+{% load static %}
+{% block title %}Mathias Freiwald | Web development{% endblock %}
+
+{% block content %}
+<a class="go_back_button" href="{% url 'guestbook:list_entries_final' %}">
+    <i class="fa-solid fa-circle-chevron-left fa-2xl"></i> Go back
+</a>
+<section id="detail_view">
+    <p><strong><span class="guestbook-author">{{ guestbook.author }}</span></strong> wrote on {{ object.date_create }} following:</p>
+    <h1>{{ guestbook.title }}</h1>
+    <p>{{ object.text }}</p>
+</section>
+{% endblock %}

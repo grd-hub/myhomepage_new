@@ -92,9 +92,7 @@ def add_fifty():
            ' fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt' \
            ' mollit anim id est laborum.'
 
-    write_entry = Guestbook.objects.create(
-        author='Moin', title='yooo', text='das ist mal ein text'
-    )
+    write_entry = Guestbook(author='GOD', title='this is GOOOOOD', text='if you read this')
     write_entry.save()
 
 

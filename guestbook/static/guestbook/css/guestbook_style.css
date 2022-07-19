@@ -1,0 +1,319 @@
+/* --- START STANDARD --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html {
+    scroll-behavior: smooth;
+}
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    /*background-image: url({% static 'guestbook/img/caio-1920x1080.jpg' %});*/
+    background-image: url('caio-1920x1080.jpg');
+    background-attachment: fixed;
+    background-size: 100% 100%;
+    z-index: -10;
+}
+.css-grid {
+    display: grid;
+    grid-template-columns: auto;
+    grid-gap: 1rem;
+}
+.ta-center {
+    text-align: center;
+}
+.ta-left {
+    text-align: left;
+}
+.ta-justify {
+    text-align: justify;
+}
+/* --- END STANDARD --- */
+
+
+/* --- START ELEMENTS --- */
+input {
+    width: 100%;
+    height: 33px;
+    border-style: solid none solid none;
+    text-align: center;
+}
+label {
+    width: 100%;
+    height: 33px;
+    background-color: hsl(210, 100%, 99%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+textarea {
+
+    width: 380px;
+    height: 400px;
+}
+/* --- END ELEMENTS --- */
+
+
+/* --- START PAGE AREAS --- */
+.item_header {
+    grid-area: header;
+    position: sticky;
+    top: 0;
+}
+.item_main {
+    grid-area: main;
+}
+/* --- END PAGE AREAS --- */
+
+
+/* --- START COLLAPSIBLE --- */
+.collapsible {
+    background-color: dodgerblue;
+    color: white;
+    cursor: pointer;
+    height: 33px;
+    width: 100%;
+    border: none;
+    text-align: center;
+    outline: none;
+    font-size: 1rem;
+    margin-top: 1rem;
+}
+.active, .collapsible:hover {
+    background-color: #ccc;
+}
+.content {
+    display: none;
+    height: 400px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    z-index: 1;
+}
+/* --- END COLLAPSIBLE --- */
+
+
+/* --- START MAIN BUTTONS ---  */
+.main_button {
+    display: block;
+    text-decoration: none;
+    margin-top: 1rem;
+
+}
+.main_button p:hover {
+    background-color: #ccc;
+}
+.main_button p {
+    color: white;
+    background: dodgerblue;
+    height: 33px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+/* --- END MAIN BUTTONS ---  */
+
+
+/* --- START FILTER AREA --- */
+#filter {
+    border: 1px solid black;
+    width: 50%;
+
+    margin: 0 auto;
+    z-index: 1;
+}
+.p_header {
+    height: 33px;
+    background-color: hsl(210, 100%, 99%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#filter_button {
+    width: 100%;
+}
+/* --- END FILTER AREA --- */
+
+
+/* --- START guestbook-card --- */
+.guestbook-card {
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+.guestbook-card h2 {
+    padding: 8px 8px 4px 8px;
+}
+.guestbook-card p {
+    padding: 8px;
+}
+.guestbook-card a {
+    text-decoration: none;
+    margin: 0 16px;
+    color: brown;
+}
+.guestbook-author {
+    color: DarkBlue;
+    font-size: 1.1rem;
+}
+.spacer {
+    height: 8px;
+}
+/* --- END guestbook-card --- */
+
+
+/* --- START CSS GRID BASE --- */
+#css_grid_base {
+    display: grid;
+    grid-template-areas:
+        'header header header header header header header header header header header header'
+        'main main main main main main main main main main main main';
+    gap: 1rem;
+    margin: 0 1rem 1rem 1rem;
+}
+/* --- END CSS GRID BASE --- */
+
+
+/* --- START MAIN AREA ---  */
+#main_container {
+    background-color: hsla(31, 82%, 94%, 0.4);
+    border-radius: 10px;
+}
+/* --- END MAIN AREA ---  */
+
+
+/* --- START PAGINATION --- */
+#pagination {
+    display: flex;
+    width: 100%;
+    margin: auto auto auto 1rem;
+}
+#pagination a {
+    text-decoration: none;
+    font-size: 1.1rem;
+    margin-right: 1px;
+}
+.page-link-selected {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    height: 34px;
+    width: 34px;
+}
+.page-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 34px;
+    width: 34px;
+}
+.page-link-bg {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 34px;
+    width: 54px;
+}
+/* --- END PAGINATION --- */
+
+
+/* --- START DETAIL VIEW ---  */
+#detail_view {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 10px;
+    align-items: center;
+    justify-content: center;
+    margin: 1rem 1rem;
+    text-align: justify;
+}
+#detail_view p {
+    margin: 1rem 1rem;
+}
+/* --- END DETAIL VIEW ---  */
+
+
+/* --- START CREATE VIEW  --- */
+#create_view {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 10px;
+    align-items: center;
+    justify-content: center;
+    margin: 1rem 1rem;
+    text-align: justify;
+}
+#create_view p {
+    margin: 1rem 1rem;
+}
+#create_button {
+    width: 330px;
+    margin-bottom: 1rem;
+}
+/* --- END CREATE VIEW  --- */
+
+
+/* --- START UPDATE VIEW --- */
+#update_view {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 10px;
+    align-items: center;
+    justify-content: center;
+    margin: 1rem 1rem;
+    text-align: justify;
+}
+#update_view p {
+    margin: 1rem 1rem;
+}
+#update_button {
+    width: 330px;
+    margin-bottom: 1rem;
+}
+/* --- END UPDATE VIEW --- */
+
+
+/* --- START DELETE VIEW --- */
+#delete_view {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 10px;
+    align-items: center;
+    justify-content: center;
+    margin: 1rem 1rem;
+    text-align: justify;
+}
+#delete_view p {
+    margin: 1rem 1rem;
+}
+#delete_button {
+    width: 330px;
+    margin-bottom: 1rem;
+}
+/* --- END DELETE VIEW --- */
+
+
+.go_back_button {
+    display: block;
+    margin: 1rem 1rem;
+    text-decoration: none;
+}
+
+
+@media only screen and (max-width: 768px) {
+    .content {
+        height: 350px;
+    }
+    textarea {
+        width: 345px;
+    }
+}

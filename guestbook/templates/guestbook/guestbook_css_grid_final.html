@@ -1,0 +1,248 @@
+{% extends 'guestbook/base.html' %}
+
+{% load static %}
+
+{% load guestbook_extras %}
+
+{% block title %}Mathias Freiwald | Web development{% endblock %}
+
+{% block content %}
+
+{% if page_view %}
+    {% if page_view == 'listview' %}
+        <style>
+            .css-grid {
+                grid-template-columns: auto;
+            }
+        </style>
+    {% elif page_view == 'mosaicview' %}
+        <style>
+            .css-grid {
+                grid-template-columns: repeat(auto-fill, minmax(256px, 1fr));
+            }
+        </style>
+    {% endif %}
+{% else %}
+    <style>
+        .css-grid {
+            grid-template-columns: auto;
+        }
+    </style>
+{% endif %}
+
+<div id="css_grid_base">
+
+    <div class="item_header">
+        <a class="main_button" href="{% url 'guestbook:guestbook_createview' %}">
+            <p><strong>ADD ENTRY</strong></p>
+        </a>
+
+        <a class="main_button" href="">
+            <p><strong>ADD 50 GENERIC ENTRIES</strong></p>
+        </a>
+
+        <form method="POST" action="">
+            {% csrf_token %}
+            <input name="add" value="50" hidden type="text">
+            <button type="submit"><strong>ADD 50 GENERIC ENTRIES</strong></button>
+        </form>
+
+
+
+
+        <a class="main_button" href="">
+            <p><strong>DELETE ALL GENERIC ENTRIES</strong></p>
+        </a>
+
+
+        <button id="btn-col" type="button" class="collapsible">
+            <strong>FILTER ENTRIES</strong>
+        </button>
+
+        <section id="filter" class="content">
+            <form method="GET" action="">
+
+                {{ filtered_guestbook.form.as_p }}
+
+                <p class="p_header" >Order by:</p>
+                {% if order_radio_button %}
+                    {% if order_radio_button == 'author' %}
+                    <input type="radio" id="author" name="order_group" value="author" checked>
+                    <label for="author" class="ta-center">Author</label><br>
+                    <input type="radio" id="date_ascending" name="order_group" value="date_ascending">
+                    <label for="date_ascending" class="ta-center">Date ascending</label><br>
+                    <input type="radio" id="date_descending" name="order_group" value="date_descending">
+                    <label for="date_descending" class="ta-center">Date descending</label><br>
+                    {% elif order_radio_button == 'date_ascending' %}
+                    <input type="radio" id="author" name="order_group" value="author">
+                    <label for="author" class="ta-center">Author</label><br>
+                    <input type="radio" id="date_ascending" name="order_group" value="date_ascending" checked>
+                    <label for="date_ascending" class="ta-center">Date ascending</label><br>
+                    <input type="radio" id="date_descending" name="order_group" value="date_descending">
+                    <label for="date_descending" class="ta-center">Date descending</label><br>
+                    {% elif order_radio_button == 'date_descending' %}
+                    <input type="radio" id="author" name="order_group" value="author">
+                    <label for="author" class="ta-center">Author</label><br>
+                    <input type="radio" id="date_ascending" name="order_group" value="date_ascending">
+                    <label for="date_ascending" class="ta-center">Date ascending</label><br>
+                    <input type="radio" id="date_descending" name="order_group" value="date_descending" checked>
+                    <label for="date_descending" class="ta-center">Date descending</label><br>
+                    {% endif %}
+                {% else %}
+                <input type="radio" id="author" name="order_group" value="author" checked>
+                <label for="author" class="ta-center">Author</label><br>
+                <input type="radio" id="date_ascending" name="order_group" value="date_ascending">
+                <label for="date_ascending" class="ta-center">Date ascending</label><br>
+                <input type="radio" id="date_descending" name="order_group" value="date_descending">
+                <label for="date_descending" class="ta-center">Date descending</label><br>
+                {% endif %}
+
+                <p class="p_header">View as:</p>
+                {% if page_view %}
+
+                    {% if page_view == 'listview' %}
+                    <input type="radio" id="listview" name="view_group" value="listview" checked>
+                    <label for="listview" class="ta-center">List</label><br>
+                    <input type="radio" id="mosaicview" name="view_group" value="mosaicview">
+                    <label for="mosaicview" class="ta-center">Mosaic</label><br>
+                    {% elif page_view == 'mosaicview' %}
+                    <input type="radio" id="listview" name="view_group" value="listview">
+                    <label for="listview" class="ta-center">List</label><br>
+                    <input type="radio" id="mosaicview" name="view_group" value="mosaicview" checked>
+                    <label for="mosaicview" class="ta-center">Mosaic</label><br>
+                    {% else %}
+                    <input type="radio" id="listview" name="view_group" value="listview" checked>
+                    <label for="listview" class="ta-center">List</label><br>
+                    <input type="radio" id="mosaicview" name="view_group" value="mosaicview">
+                    <label for="mosaicview" class="ta-center">Mosaic</label><br>
+                    {% endif %}
+                {% else %}
+                <input type="radio" id="listview" name="view_group" value="listview" checked>
+                <label for="listview" class="ta-center">List view</label><br>
+                <input type="radio" id="mosaicview" name="view_group" value="mosaicview">
+                <label for="mosaicview" class="ta-center">Mosaic view</label><br>
+                {% endif %}
+
+                <p class="p_header">Entries per page:</p>
+                    {% if entries_per_page %}
+
+                        {% if entries_per_page == '---------' %}
+                        <input type="radio" id="entries_all" name="entries_per_page" value="---------" checked>
+                        <label for="entries_all" class="ta-center">all</label><br>
+                        <input type="radio" id="entries_8" name="entries_per_page" value="8">
+                        <label for="entries_8" class="ta-center">8</label><br>
+                        <input type="radio" id="entries_16" name="entries_per_page" value="16">
+                        <label for="entries_16" class="ta-center">16</label><br>
+                        <input type="radio" id="entries_32" name="entries_per_page" value="32">
+                        <label for="entries_32" class="ta-center">32</label><br>
+                        <input type="radio" id="entries_64" name="entries_per_page" value="64">
+                        <label for="entries_64" class="ta-center">64</label><br>
+                        {% elif entries_per_page == '8' %}
+                        <input type="radio" id="entries_all" name="entries_per_page" value="---------">
+                        <label for="entries_all" class="ta-center">all</label><br>
+                        <input type="radio" id="entries_8" name="entries_per_page" value="8" checked>
+                        <label for="entries_8" class="ta-center">8</label><br>
+                        <input type="radio" id="entries_16" name="entries_per_page" value="16">
+                        <label for="entries_16" class="ta-center">16</label><br>
+                        <input type="radio" id="entries_32" name="entries_per_page" value="32">
+                        <label for="entries_32" class="ta-center">32</label><br>
+                        <input type="radio" id="entries_64" name="entries_per_page" value="64">
+                        <label for="entries_64" class="ta-center">64</label><br>
+                        {% elif entries_per_page == '16' %}
+                        <input type="radio" id="entries_all" name="entries_per_page" value="---------">
+                        <label for="entries_all" class="ta-center">all</label><br>
+                        <input type="radio" id="entries_8" name="entries_per_page" value="8">
+                        <label for="entries_8" class="ta-center">8</label><br>
+                        <input type="radio" id="entries_16" name="entries_per_page" value="16" checked>
+                        <label for="entries_16" class="ta-center">16</label><br>
+                        <input type="radio" id="entries_32" name="entries_per_page" value="32">
+                        <label for="entries_32" class="ta-center">32</label><br>
+                        <input type="radio" id="entries_64" name="entries_per_page" value="64">
+                        <label for="entries_64" class="ta-center">64</label><br>
+                        {% elif entries_per_page == '32' %}
+                        <input type="radio" id="entries_all" name="entries_per_page" value="---------">
+                        <label for="entries_all" class="ta-center">all</label><br>
+                        <input type="radio" id="entries_8" name="entries_per_page" value="8">
+                        <label for="entries_8" class="ta-center">8</label><br>
+                        <input type="radio" id="entries_16" name="entries_per_page" value="16">
+                        <label for="entries_16" class="ta-center">16</label><br>
+                        <input type="radio" id="entries_32" name="entries_per_page" value="32" checked>
+                        <label for="entries_32" class="ta-center">32</label><br>
+                        <input type="radio" id="entries_64" name="entries_per_page" value="64">
+                        <label for="entries_64" class="ta-center">64</label><br>
+                        {% elif entries_per_page == '64' %}
+                        <input type="radio" id="entries_all" name="entries_per_page" value="---------">
+                        <label for="entries_all" class="ta-center">all</label><br>
+                        <input type="radio" id="entries_8" name="entries_per_page" value="8">
+                        <label for="entries_8" class="ta-center">8</label><br>
+                        <input type="radio" id="entries_16" name="entries_per_page" value="16">
+                        <label for="entries_16" class="ta-center">16</label><br>
+                        <input type="radio" id="entries_32" name="entries_per_page" value="32">
+                        <label for="entries_32" class="ta-center">32</label><br>
+                        <input type="radio" id="entries_64" name="entries_per_page" value="64" checked>
+                        <label for="entries_64" class="ta-center">64</label><br>
+                        {% endif %}
+                    {% else %}
+                    <input type="radio" id="entries_all" name="entries_per_page" value="---------">
+                    <label for="entries_all" class="ta-center">all</label><br>
+                    <input type="radio" id="entries_8" name="entries_per_page" value="8" checked>
+                    <label for="entries_8" class="ta-center">8</label><br>
+                    <input type="radio" id="entries_16" name="entries_per_page" value="16">
+                    <label for="entries_16" class="ta-center">16</label><br>
+                    <input type="radio" id="entries_32" name="entries_per_page" value="32">
+                    <label for="entries_32" class="ta-center">32</label><br>
+                    <input type="radio" id="entries_64" name="entries_per_page" value="64">
+                        <label for="entries_64" class="ta-center">64</label><br>
+                    {% endif %}
+
+
+                <button id="filter_button" type="submit">APPLY FILTER</button>
+            </form>
+        </section>
+    </div>
+
+    <div class="item_main">
+        <section id="main_container">
+            <div id="css-grid" class="css-grid">
+                {% for guestbook in guestbook_page_obj %}
+                    <div class="guestbook-card">
+                        <h2>{{ guestbook.title }}</h2>
+                        <p>{{ guestbook.date_create }}</p>
+                        <p>written by: <strong><span class="guestbook-author">{{ guestbook.author }}</span></strong></p>
+                        <p class="ta-justify">{{ guestbook.text|slice:":350" }}...</p>
+
+                            <a href="{% url 'guestbook:guestbook_detailview' guestbook.slug %}"><strong>READ MORE</strong></a>
+                            <a href="{% url 'guestbook:guestbook_updateview' guestbook.slug %}"><strong>UPDATE</strong></a>
+                            <a href="{% url 'guestbook:guestbook_deleteview' guestbook.slug %}"><strong>DELETE</strong></a>
+                        <div class="spacer"></div>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <div id="pagination">
+                {% if guestbook_page_obj.has_previous %}
+                    <a class="page-link-bg" href="{% my_url 1 'page' request.GET.urlencode %}">First</a>
+                    <a class="page-link-bg" href="{% my_url guestbook_page_obj.previous_page_number 'page' request.GET.urlencode %}">Previous</a>
+                {% endif %}
+
+                {% for i in nums %}
+                    {% if forloop.counter == guestbook_page_obj.number %}
+                        <div class="page-link-selected">
+                            <a href="{% my_url forloop.counter 'page' request.GET.urlencode %}">{{ forloop.counter }}</a>
+                        </div>
+                    {% else %}
+                        <div class="page-link">
+                            <a class="page-link" href="{% my_url forloop.counter 'page' request.GET.urlencode %}">{{ forloop.counter }}</a>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+
+                {% if guestbook_page_obj.has_next %}
+                    <a class="page-link-bg" href="{% my_url guestbook_page_obj.next_page_number 'page' request.GET.urlencode %}">Next</a>
+                    <a class="page-link-bg" href="{% my_url guestbook_page_obj.paginator.num_pages 'page' request.GET.urlencode %}">Last</a>
+                {% endif %}
+            </div>
+        </section>
+    </div>
+</div>
+{% endblock %}

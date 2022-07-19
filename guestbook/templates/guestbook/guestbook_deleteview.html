@@ -1,0 +1,16 @@
+{% extends 'guestbook/base.html' %}
+{% load static %}
+{% block title %}Mathias Freiwald | Web development{% endblock %}
+
+{% block content %}
+<a class="go_back_button" href="{% url 'guestbook:list_entries_final' %}">
+    <i class="fa-solid fa-circle-chevron-left fa-2xl"></i> Go back
+</a>
+<form method="POST" action="">
+    {% csrf_token %}
+    <div id="delete_view">
+        <p>Are you sure you want to delete "{{ object }}"?</p>
+        <input id="delete_button" type="submit" value="Confirm">
+    </div>
+</form>
+{% endblock %}

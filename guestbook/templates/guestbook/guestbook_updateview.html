@@ -1,0 +1,16 @@
+{% extends 'guestbook/base.html' %}
+{% load static %}
+{% block title %}Mathias Freiwald | Web development{% endblock %}
+
+{% block content %}
+<a class="go_back_button" href="{% url 'guestbook:list_entries_final' %}">
+    <i class="fa-solid fa-circle-chevron-left fa-2xl"></i> Go back
+</a>
+<form method="post">
+    {% csrf_token %}
+    <div id="update_view">
+        {{ form.as_p }}
+        <input id="update_button" type="submit" value="Update">
+    </div>
+</form>
+{% endblock %}
