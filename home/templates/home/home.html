@@ -1,0 +1,21 @@
+{% extends 'home/base.html' %}
+{% load static %}
+{% block title %}Mathias Freiwald | Web Development{% endblock %}
+{% block content %}
+    <section id="welcome">
+        <br>
+        <img id="portrait" src="{% static 'home/img/profile_pic_240_320_round.png' %}" alt="portrait">
+        <br><br>
+        <p class="ta-justify">Hello, my name is Mathias Freiwald. Welcome to my website!</p>
+        <br>
+        <p class="ta-justify">I like to build things with django.</p>
+        <br>
+        <p class="ta-justify">You can find the source code for this site <a href="#">here</a>.</p>
+        <br>
+        <h4>samples</h4>
+        <a href="" target="_blank">Guestbook</a><br>
+        <br>
+        <h4>contact</h4>
+        <a href="mailto:m.freiwald@gmx.net">m.freiwald@gmx.net</a>
+    </section>
+{% endblock %}
