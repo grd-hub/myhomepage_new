@@ -8,6 +8,38 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{% block title %}base{% endblock %}</title>
     <link rel="stylesheet" type="text/css" href="{% static 'home/css/style.css' %}">
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html {
+    scroll-behavior: smooth;
+}
+body {
+    font-family: sans-serif, Arial, Helvetica;
+    background: var(--main-white);
+    color: var(--main-black);
+    font-size: 1.1rem;
+    line-height: 1.5;
+}
+#welcome {
+    margin: 0rem 1rem 1rem 1rem;
+}
+#welcome a {
+    color: var(--main-blue);
+}
+#welcome li {
+    margin-left: 1rem;
+}
+.ta-center {
+    text-align: center;
+}
+.ta-justify {
+    text-align: justify;
+}
+    </style>
 </head>
 <body>
 

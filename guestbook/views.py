@@ -97,12 +97,6 @@ def list_entries_final(request):
         page_number = request.GET.get('page')
         guestbook_page_obj = paginated_filtered_guestbook.get_page(page_number)
         nums = "a" * guestbook_page_obj.paginator.num_pages
-        print()
-        print('-------------------')
-        print(nums)
-        print('-------------------')
-        print()
-
 
         sum_all_entries = Guestbook.objects.count()
 
