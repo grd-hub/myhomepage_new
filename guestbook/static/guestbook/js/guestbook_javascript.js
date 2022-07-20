@@ -4,6 +4,7 @@ $(":radio").checkboxradio();
 $("#filter_button").button();
 /* --- END jQuery / UI ---*/
 
+
 /* --- START collapsible JS --- */
 const coll = document.getElementsByClassName("collapsible");
 for (let i = 0; i < coll.length; i++) {
@@ -18,3 +19,10 @@ for (let i = 0; i < coll.length; i++) {
   });
 }
 /* --- END collapsible JS --- */
+
+
+/* --- START TOGGLE MENU --- */
+$("#toggle_menu_btn").click(function(){
+    $(".main_menu").toggle();
+});
+/* --- END TOGGLE MENU --- */

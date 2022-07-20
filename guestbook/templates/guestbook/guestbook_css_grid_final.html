@@ -39,26 +39,32 @@
 
 <div id="css_grid_base">
 
+
     <div class="item_header">
-        <a class="main_link" href="{% url 'guestbook:guestbook_createview' %}">
-            <p><strong>ADD ENTRY</strong></p>
-        </a>
 
-        <form method="POST" action="">
-            {% csrf_token %}
-            <input name="add" value="50" hidden type="text">
-            <button class="main_button" type="submit"><strong>ADD 50 GENERIC ENTRIES</strong></button>
-        </form>
+            <button id="toggle_menu_btn" class="toggle_menu_btn"><strong>TOGGLE MENU</strong></button>
 
-        <form method="POST" action="">
-            {% csrf_token %}
-            <input name="delete" value="generic" hidden type="text">
-            <button class="main_button" type="submit"><strong>DELETE ALL GENERIC ENTRIES</strong></button>
-        </form>
+            <a class="main_link main_menu" href="{% url 'guestbook:guestbook_createview' %}">
+                <p><strong>ADD ENTRY</strong></p>
+            </a>
 
-        <button id="btn-col" type="button" class="collapsible">
-            <strong>FILTER ENTRIES({{ sum_all_entries }})</strong>
-        </button>
+            <form class="main_menu" method="POST" action="">
+                {% csrf_token %}
+                <input name="add" value="50" hidden type="text">
+                <button class="main_button" type="submit"><strong>ADD 50 GENERIC ENTRIES</strong></button>
+            </form>
+
+            <form class="main_menu" method="POST" action="">
+                {% csrf_token %}
+                <input name="delete" value="generic" hidden type="text">
+                <button class="main_button" type="submit"><strong>DELETE ALL GENERIC ENTRIES</strong></button>
+            </form>
+
+            <button id="btn-col" type="button" class="collapsible main_menu">
+                <strong>FILTER ENTRIES({{ sum_all_entries }})</strong>
+            </button>
+
+
 
         <section id="filter" class="content">
             <form method="GET" action="">
@@ -215,35 +221,45 @@
                             <a href="{% url 'guestbook:guestbook_detailview' guestbook.slug %}"><strong>READ MORE</strong></a>
                             <a href="{% url 'guestbook:guestbook_updateview' guestbook.slug %}"><strong>UPDATE</strong></a>
                             <a href="{% url 'guestbook:guestbook_deleteview' guestbook.slug %}"><strong>DELETE</strong></a>
-                        <div class="spacer"></div>
+
                     </div>
                 {% endfor %}
             </div>
 
-            <div id="pagination">
-                {% if guestbook_page_obj.has_previous %}
-                    <a class="page-link-bg" href="{% my_url 1 'page' request.GET.urlencode %}">First</a>
-                    <a class="page-link-bg" href="{% my_url guestbook_page_obj.previous_page_number 'page' request.GET.urlencode %}">Previous</a>
-                {% endif %}
 
-                {% for i in nums %}
-                    {% if forloop.counter == guestbook_page_obj.number %}
-                        <div class="page-link-selected">
-                            <a href="{% my_url forloop.counter 'page' request.GET.urlencode %}">{{ forloop.counter }}</a>
-                        </div>
-                    {% else %}
-                        <div class="page-link">
-                            <a class="page-link" href="{% my_url forloop.counter 'page' request.GET.urlencode %}">{{ forloop.counter }}</a>
-                        </div>
-                    {% endif %}
-                {% endfor %}
-
-                {% if guestbook_page_obj.has_next %}
-                    <a class="page-link-bg" href="{% my_url guestbook_page_obj.next_page_number 'page' request.GET.urlencode %}">Next</a>
-                    <a class="page-link-bg" href="{% my_url guestbook_page_obj.paginator.num_pages 'page' request.GET.urlencode %}">Last</a>
-                {% endif %}
-            </div>
         </section>
-    </div>
+            <div id="pagination">
+    {% if guestbook_page_obj.has_previous %}
+        <a class="page-link-bg" href="{% my_url 1 'page' request.GET.urlencode %}">First</a>
+        <a class="page-link-bg" href="{% my_url guestbook_page_obj.previous_page_number 'page' request.GET.urlencode %}">Previous</a>
+    {% endif %}
+
+    {% for i in nums %}
+        {% if forloop.counter == guestbook_page_obj.number %}
+            <div class="page-link-selected">
+                <a href="{% my_url forloop.counter 'page' request.GET.urlencode %}">{{ forloop.counter }}</a>
+            </div>
+        {% else %}
+            <div class="page-link">
+                <a class="page-link" href="{% my_url forloop.counter 'page' request.GET.urlencode %}">{{ forloop.counter }}</a>
+            </div>
+        {% endif %}
+    {% endfor %}
+
+    {% if guestbook_page_obj.has_next %}
+        <a class="page-link-bg" href="{% my_url guestbook_page_obj.next_page_number 'page' request.GET.urlencode %}">Next</a>
+        <a class="page-link-bg" href="{% my_url guestbook_page_obj.paginator.num_pages 'page' request.GET.urlencode %}">Last</a>
+    {% endif %}
 </div>
+
+
+
+    </div>
+
+
+
+
+
+</div>
+
 {% endblock %}

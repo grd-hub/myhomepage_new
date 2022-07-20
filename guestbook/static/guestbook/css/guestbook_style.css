@@ -1,4 +1,4 @@
-/* --- START STANDARD --- */
+ /* --- START STANDARD --- */
 * {
     margin: 0;
     padding: 0;
@@ -67,6 +67,29 @@ textarea {
 /* --- END PAGE AREAS --- */
 
 
+/* --- START MESSAGES --- */
+.alert {
+  padding: 20px;
+  background-color: Crimson;
+  color: white;
+}
+
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.closebtn:hover {
+  color: black;
+}
+/* --- END MESSAGES --- */
+
+
 /* --- START COLLAPSIBLE --- */
 .collapsible {
     background-color: dodgerblue;
@@ -111,6 +134,7 @@ textarea {
     justify-content: center;
 }
 .main_button {
+    cursor: pointer;
     margin-top: 1rem;
     height: 33px;
     width: 100%;
@@ -122,30 +146,20 @@ textarea {
 .main_button:hover {
     background-color: #ccc;
 }
+.toggle_menu_btn {
+    cursor: pointer;
+    margin-top: 1rem;
+    height: 33px;
+    width: 100%;
+    border: none;
+    background: dodgerblue;
+    font-size: 1rem;
+    color: white;
+}
+.toggle_menu_btn:hover {
+    background-color: #ccc;
+}
 /* --- END MAIN BUTTONS ---  */
-
-
-/* --- START MESSAGES --- */
-.alert {
-  padding: 20px;
-  background-color: DarkSalmon;
-  color: white;
-}
-
-.closebtn {
-  margin-left: 15px;
-  color: white;
-  font-weight: bold;
-  float: right;
-  font-size: 22px;
-  line-height: 20px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-.closebtn:hover {
-  color: black;
-}
-/* --- END MESSAGES --- */
 
 
 /* --- START FILTER AREA --- */
@@ -168,33 +182,6 @@ textarea {
 /* --- END FILTER AREA --- */
 
 
-/* --- START guestbook-card --- */
-.guestbook-card {
-    background-color: white;
-    border: 1px solid black;
-    border-radius: 10px;
-}
-.guestbook-card h2 {
-    padding: 8px 8px 4px 8px;
-}
-.guestbook-card p {
-    padding: 8px;
-}
-.guestbook-card a {
-    text-decoration: none;
-    margin: 0 16px;
-    color: brown;
-}
-.guestbook-author {
-    color: DarkBlue;
-    font-size: 1.1rem;
-}
-.spacer {
-    height: 8px;
-}
-/* --- END guestbook-card --- */
-
-
 /* --- START CSS GRID BASE --- */
 #css_grid_base {
     display: grid;
@@ -215,40 +202,31 @@ textarea {
 /* --- END MAIN AREA ---  */
 
 
-/* --- START PAGINATION --- */
-#pagination {
-    display: flex;
-    width: 100%;
-    margin: auto auto auto 1rem;
-}
-#pagination a {
-    text-decoration: none;
-    font-size: 1.1rem;
-    margin-right: 1px;
-}
-.page-link-selected {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+/* --- START guestbook-card --- */
+.guestbook-card {
     background-color: white;
-    height: 34px;
-    width: 34px;
+    border: 1px solid black;
+    border-radius: 10px;
 }
-.page-link {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 34px;
-    width: 34px;
+.guestbook-card h2 {
+    padding: 8px 8px 4px 8px;
 }
-.page-link-bg {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 34px;
-    width: 54px;
+.guestbook-card p {
+    padding: 8px;
 }
-/* --- END PAGINATION --- */
+.guestbook-card a {
+    text-decoration: none;
+    margin: 0 8px;
+    color: brown;
+}
+.guestbook-author {
+    color: DarkBlue;
+    font-size: 1.1rem;
+}
+.spacer {
+    height: 8px;
+}
+/* --- END guestbook-card --- */
 
 
 /* --- START DETAIL VIEW ---  */
@@ -333,6 +311,43 @@ textarea {
     margin-bottom: 1rem;
 }
 /* --- END DELETE VIEW --- */
+
+
+/* --- START PAGINATION --- */
+#pagination {
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto auto auto 1rem;
+}
+#pagination a {
+    display: flex;
+    text-decoration: none;
+    font-size: 1.1rem;
+    margin-right: 1px;
+}
+.page-link-selected {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    height: 34px;
+    width: 34px;
+}
+.page-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 34px;
+    width: 34px;
+}
+.page-link-bg {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 34px;
+    width: 54px;
+}
+/* --- END PAGINATION --- */
 
 
 .go_back_button {

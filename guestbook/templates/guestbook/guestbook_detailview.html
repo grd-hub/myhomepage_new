@@ -3,7 +3,7 @@
 {% block title %}Mathias Freiwald | Web development{% endblock %}
 
 {% block content %}
-<a class="go_back_button" href="{% url 'guestbook:list_entries_final' %}">
+<a onclick="javascript:history.back();" class="go_back_button" href="">
     <i class="fa-solid fa-circle-chevron-left fa-2xl"></i> Go back
 </a>
 <section id="detail_view">
