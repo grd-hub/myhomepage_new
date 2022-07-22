@@ -1,10 +1,17 @@
 from django.contrib import messages
+
 from django.core.paginator import Paginator
+
 from django.shortcuts import render, redirect
+
 from django.urls import reverse_lazy
+
 from django.views.generic import DetailView
+
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+
 from .models import Guestbook
+
 from .filters import GuestbookFilter
 
 from .utils import check_order_group, check_entries_per_page, check_page_view, add_fifty, delete_all_generic_entries
@@ -18,6 +25,7 @@ class GuestbookDeleteView(DeleteView):
 
 class GuestbookUpdateView(UpdateView):
     model = Guestbook
+
     fields = [
         'title',
         'text',
@@ -28,6 +36,7 @@ class GuestbookUpdateView(UpdateView):
 
 class GuestbookCreateView(CreateView):
     model = Guestbook
+
     fields = [
         'author',
         'title',
@@ -57,6 +66,7 @@ def list_entries_final(request):
     if 'delete' in request.POST:
 
         delete_all_generic_entries()
+
         return redirect('guestbook:list_entries_final')
 
     if 'order_group' and 'entries_per_page' and 'view_group' in request.GET:
@@ -106,4 +116,5 @@ def list_entries_final(request):
             'nums': nums,
             'sum_all_entries': sum_all_entries
         }
+
         return render(request, 'guestbook/guestbook_css_grid_final.html', context)

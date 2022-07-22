@@ -1,9 +1,36 @@
-:root {
-    --main-black: #000000;
-    --main-white: #FFFFFF;
-    --main-blue: #6495ED;
-    --main-grey: #303841;
-    --main-azure: #F0FFFF;
-    --main-green: #B0E0E6;
-    --main-green-accent: #7FFFD4;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html {
+    scroll-behavior: smooth;
+}
+body {
+    font-family: sans-serif, Arial, Helvetica;
+    background: var(--main-white);
+    color: var(--main-black);
+    font-size: 1.1rem;
+    line-height: 1.5;
+}
+#welcome {
+    margin: 0rem 1rem 1rem 1rem;
+}
+#welcome a {
+    color: black;
+}
+.ta-center {
+    text-align: center;
+}
+.ta-justify {
+    text-align: justify;
+}
+.modal_btn {
+    background: none;
+	color: dodgerblue;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
 }

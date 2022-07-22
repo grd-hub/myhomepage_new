@@ -4,68 +4,243 @@
 {% block content %}
 
 {% if content_language == 'de' %}
+
     <section id="welcome">
         <br>
         <img id="portrait" src="{% static 'home/img/profile_pic_240_320_round.png' %}" alt="portrait">
-        <br><br>
-        <p class="ta-justify">Hallo, mein Name ist Mathias Freiwald, willkommen auf meiner Website!</p>
-        <br>
+        <br><br><br>
+
+        <p class="ta-justify">
+            Hallo, mein Name ist Mathias Freiwald, willkommen auf meiner Website!
+        </p>
+
         <p class="ta-justify">Ich baue gerne Dinge mit Django.</p>
-        <br>
+
         <p class="ta-justify">Sie können den Source-Code für diese Seite <a href="">hier</a> finden.</p>
+
         <br>
         <h4>Muster</h4>
-        <a href="{% url 'guestbook:list_entries_final' %}" target="_blank">Guestbook</a><br>
-        <br>
+        <a href="{% url 'guestbook:list_entries_final' %}" target="_blank">Guestbook</a>
+        <button id="second_modal_btn" class="modal_btn" type="button" data-bs-toggle="modal" data-bs-target="#second_modal">
+            <i class="fa-solid fa-circle-info fa-xl"></i>
+            </button>
+        <br><br>
+
         <h4>Kontakt</h4>
         <a href="mailto:m.freiwald@gmx.net">m.freiwald@gmx.net</a>
+        <button id="first_modal_btn" class="modal_btn" type="button" data-bs-toggle="modal" data-bs-target="#first_modal">
+            <i class="fa-solid fa-circle-info fa-xl"></i>
+            </button>
         <br><br>
+
         <h4>Ich nutze auch</h4>
         <ul>
             <li>Bootstrap</li>
             <li>jQuery</li>
             <li>Sass</li>
+            <li>Regular Expressions</li>
+            <li>Git / GitHub</li>
             <li>Gimp</li>
             <li>Ubuntu</li>
-
-
         </ul>
+        <br>
+
+        <!-- Guestbook Text Modal -->
+        <div class="modal fade modal-lg" id="second_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="t_modal_2"></h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <div class="modal-body">
+                        <div class="ta-justify">{{ info_ger.guestbook_text | linebreaks }}</div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Text Modal -->
+        <div class="modal fade modal-lg" id="first_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="t_modal_1"></h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <div class="modal-body">
+                        <div class="ta-justify">{{ info_ger.contact_text | linebreaks }}</div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
 
     </section>
 {% elif content_language == 'en' %}
+
     <section id="welcome">
         <br>
         <img id="portrait" src="{% static 'home/img/profile_pic_240_320_round.png' %}" alt="portrait">
+        <br><br><br>
+
+        <p class="ta-justify">
+            Hello, my name is Mathias Freiwald, welcome to my website!
+        </p>
+
+        <p class="ta-justify">I enjoy to build things with Django.</p>
+
+        <p class="ta-justify">You can find the source-code of this site <a href="">here</a>.</p>
+
+        <br>
+        <h4>Sample</h4>
+        <a href="{% url 'guestbook:list_entries_final' %}" target="_blank">Guestbook</a>
+        <button id="second_modal_btn" class="modal_btn" type="button" data-bs-toggle="modal" data-bs-target="#second_modal">
+            <i class="fa-solid fa-circle-info fa-xl"></i>
+            </button>
         <br><br>
-        <p class="ta-justify">Hello, my name is Mathias Freiwald. Welcome to my website!</p>
-        <br>
-        <p class="ta-justify">I like to build things with django.</p>
-        <br>
-        <p class="ta-justify">You can find the source code for this site <a href="#">here</a>.</p>
-        <br>
-        <h4>samples</h4>
-        <a href="{% url 'guestbook:list_entries_final' %}" target="_blank">Guestbook</a><br>
-        <br>
-        <h4>contact</h4>
+
+        <h4>Contact</h4>
         <a href="mailto:m.freiwald@gmx.net">m.freiwald@gmx.net</a>
+        <button id="first_modal_btn" class="modal_btn" type="button" data-bs-toggle="modal" data-bs-target="#first_modal">
+            <i class="fa-solid fa-circle-info fa-xl"></i>
+            </button>
+        <br><br>
+
+        <h4>I use also</h4>
+        <ul>
+            <li>Bootstrap</li>
+            <li>jQuery</li>
+            <li>Sass</li>
+            <li>Regular Expressions</li>
+            <li>Git / GitHub</li>
+            <li>Gimp</li>
+            <li>Ubuntu</li>
+        </ul>
+        <br>
+
+        <!-- Guestbook Text Modal -->
+        <div class="modal fade modal-lg" id="second_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="t_modal_2"></h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <div class="modal-body">
+                        <div class="ta-justify">{{ info_eng.guestbook_text | linebreaks }}</div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Text Modal -->
+        <div class="modal fade modal-lg" id="first_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="t_modal_1"></h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <div class="modal-body">
+                        <div class="ta-justify">{{ info_eng.contact_text | linebreaks }}</div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
     </section>
 {% else %}
+
     <section id="welcome">
         <br>
         <img id="portrait" src="{% static 'home/img/profile_pic_240_320_round.png' %}" alt="portrait">
+        <br><br><br>
+
+        <p class="ta-justify">
+            Hello, my name is Mathias Freiwald, welcome to my website!
+        </p>
+
+        <p class="ta-justify">I enjoy to build things with Django.</p>
+
+        <p class="ta-justify">You can find the source-code of this site <a href="">here</a>.</p>
+
+        <br>
+        <h4>Sample</h4>
+        <a href="{% url 'guestbook:list_entries_final' %}" target="_blank">Guestbook</a>
+        <button id="second_modal_btn" class="modal_btn" type="button" data-bs-toggle="modal" data-bs-target="#second_modal">
+            <i class="fa-solid fa-circle-info fa-xl"></i>
+            </button>
         <br><br>
-        <p class="ta-justify">Hello, my name is Mathias Freiwald. Welcome to my website!</p>
-        <br>
-        <p class="ta-justify">I like to build things with django.</p>
-        <br>
-        <p class="ta-justify">You can find the source code for this site <a href="#">here</a>.</p>
-        <br>
-        <h4>samples</h4>
-        <a href="{% url 'guestbook:list_entries_final' %}" target="_blank">Guestbook</a><br>
-        <br>
-        <h4>contact</h4>
+
+        <h4>Contact</h4>
         <a href="mailto:m.freiwald@gmx.net">m.freiwald@gmx.net</a>
+        <button id="first_modal_btn" class="modal_btn" type="button" data-bs-toggle="modal" data-bs-target="#first_modal">
+            <i class="fa-solid fa-circle-info fa-xl"></i>
+            </button>
+        <br><br>
+
+        <h4>I use also</h4>
+        <ul>
+            <li>Bootstrap</li>
+            <li>jQuery</li>
+            <li>Sass</li>
+            <li>Regular Expressions</li>
+            <li>Git / GitHub</li>
+            <li>Gimp</li>
+            <li>Ubuntu</li>
+        </ul>
+        <br>
+
+        <!-- Guestbook Text Modal -->
+        <div class="modal fade modal-lg" id="second_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="t_modal_2"></h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <div class="modal-body">
+                        <div class="ta-justify">{{ info_eng.guestbook_text | linebreaks }}</div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Text Modal -->
+        <div class="modal fade modal-lg" id="first_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="t_modal_1"></h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <div class="modal-body">
+                        <div class="ta-justify">{{ info_eng.contact_text | linebreaks }}</div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
     </section>
+
 {% endif %}
 
 {% endblock %}

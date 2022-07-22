@@ -218,10 +218,10 @@
                         <p>written by: <strong><span class="guestbook-author">{{ guestbook.author }}</span></strong></p>
                         <p class="ta-justify">{{ guestbook.text|slice:":350" }}...</p>
 
-                            <a href="{% url 'guestbook:guestbook_detailview' guestbook.slug %}"><strong>READ MORE</strong></a>
-                            <a href="{% url 'guestbook:guestbook_updateview' guestbook.slug %}"><strong>UPDATE</strong></a>
-                            <a href="{% url 'guestbook:guestbook_deleteview' guestbook.slug %}"><strong>DELETE</strong></a>
-
+                            <a href="{% url 'guestbook:guestbook_detailview' guestbook.slug %}"><p class="guestbook-link"><strong>READ MORE</strong></p></a>
+                            <a href="{% url 'guestbook:guestbook_updateview' guestbook.slug %}"><p class="guestbook-link"><strong>UPDATE</strong></p></a>
+                            <a href="{% url 'guestbook:guestbook_deleteview' guestbook.slug %}"><p class="guestbook-link"><strong>DELETE</strong></p></a>
+                            <div class="spacer"></div>
                     </div>
                 {% endfor %}
             </div>
@@ -237,11 +237,11 @@
     {% for i in nums %}
         {% if forloop.counter == guestbook_page_obj.number %}
             <div class="page-link-selected">
-                <a href="{% my_url forloop.counter 'page' request.GET.urlencode %}">{{ forloop.counter }}</a>
+                <a href="{% my_url forloop.counter 'page' request.GET.urlencode %}"><strong>{{ forloop.counter }}</strong></a>
             </div>
         {% else %}
             <div class="page-link">
-                <a class="page-link" href="{% my_url forloop.counter 'page' request.GET.urlencode %}">{{ forloop.counter }}</a>
+                <a class="page-link" href="{% my_url forloop.counter 'page' request.GET.urlencode %}"><strong>{{ forloop.counter }}</strong></a>
             </div>
         {% endif %}
     {% endfor %}

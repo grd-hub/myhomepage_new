@@ -1,4 +1,4 @@
- /* --- START STANDARD --- */
+/* --- START ELEMENTS --- */
 * {
     margin: 0;
     padding: 0;
@@ -15,6 +15,28 @@ body {
     background-size: 100% 100%;
     z-index: -10;
 }
+input {
+    width: 100%;
+    height: 33px;
+    border-style: solid none solid none;
+    text-align: center;
+}
+label {
+    width: 100%;
+    height: 33px;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+textarea {
+    width: 380px;
+    height: 400px;
+}
+/* --- END ELEMENTS --- */
+
+
+/* --- START STANDARDS --- */
 .css-grid {
     display: grid;
     grid-template-columns: auto;
@@ -29,42 +51,7 @@ body {
 .ta-justify {
     text-align: justify;
 }
-/* --- END STANDARD --- */
-
-
-/* --- START ELEMENTS --- */
-input {
-    width: 100%;
-    height: 33px;
-    border-style: solid none solid none;
-    text-align: center;
-}
-label {
-    width: 100%;
-    height: 33px;
-    background-color: hsl(210, 100%, 99%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-textarea {
-
-    width: 380px;
-    height: 400px;
-}
-/* --- END ELEMENTS --- */
-
-
-/* --- START PAGE AREAS --- */
-.item_header {
-    grid-area: header;
-    position: sticky;
-    top: 0;
-}
-.item_main {
-    grid-area: main;
-}
-/* --- END PAGE AREAS --- */
+/* --- END STANDARDS --- */
 
 
 /* --- START MESSAGES --- */
@@ -88,6 +75,18 @@ textarea {
   color: black;
 }
 /* --- END MESSAGES --- */
+
+
+/* --- START PAGE AREAS --- */
+.item_header {
+    grid-area: header;
+    position: sticky;
+    top: 0;
+}
+.item_main {
+    grid-area: main;
+}
+/* --- END PAGE AREAS --- */
 
 
 /* --- START COLLAPSIBLE --- */
@@ -194,19 +193,10 @@ textarea {
 /* --- END CSS GRID BASE --- */
 
 
-/* --- START MAIN AREA ---  */
-#main_container {
-    background-color: hsla(31, 82%, 94%, 0.4);
-    border-radius: 10px;
-}
-/* --- END MAIN AREA ---  */
-
-
 /* --- START guestbook-card --- */
 .guestbook-card {
     background-color: white;
     border: 1px solid black;
-    border-radius: 10px;
 }
 .guestbook-card h2 {
     padding: 8px 8px 4px 8px;
@@ -215,16 +205,28 @@ textarea {
     padding: 8px;
 }
 .guestbook-card a {
+    display: inline-block;
     text-decoration: none;
-    margin: 0 8px;
+    margin: 2px 8px;
     color: brown;
+}
+.guestbook-link:hover {
+    background-color: #ccc;
 }
 .guestbook-author {
     color: DarkBlue;
     font-size: 1.1rem;
 }
+.guestbook-link {
+    color: white;
+    background: dodgerblue;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 .spacer {
-    height: 8px;
+    height: 1rem;
 }
 /* --- END guestbook-card --- */
 
@@ -235,7 +237,7 @@ textarea {
     flex-direction: column;
     background-color: white;
     border: 1px solid black;
-    border-radius: 10px;
+
     align-items: center;
     justify-content: center;
     margin: 1rem 1rem;
@@ -265,6 +267,12 @@ textarea {
 #create_button {
     width: 330px;
     margin-bottom: 1rem;
+    color: white;
+    background: dodgerblue;
+    border: none;
+}
+#create_button:hover {
+    background-color: #ccc;
 }
 /* --- END CREATE VIEW  --- */
 
@@ -287,6 +295,12 @@ textarea {
 #update_button {
     width: 330px;
     margin-bottom: 1rem;
+    color: white;
+    background: dodgerblue;
+    border: none;
+}
+#update_button:hover {
+    background-color: #ccc;
 }
 /* --- END UPDATE VIEW --- */
 
@@ -297,7 +311,6 @@ textarea {
     flex-direction: column;
     background-color: white;
     border: 1px solid black;
-    border-radius: 10px;
     align-items: center;
     justify-content: center;
     margin: 1rem 1rem;
@@ -309,6 +322,12 @@ textarea {
 #delete_button {
     width: 330px;
     margin-bottom: 1rem;
+    color: white;
+    background: dodgerblue;
+    border: none;
+}
+#delete_button:hover {
+    background-color: #ccc;
 }
 /* --- END DELETE VIEW --- */
 
@@ -324,12 +343,14 @@ textarea {
     text-decoration: none;
     font-size: 1.1rem;
     margin-right: 1px;
+    color: white;
 }
 .page-link-selected {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: white;
+    background-color: dodgerblue;
+    border: 1px solid white;
     height: 34px;
     width: 34px;
 }

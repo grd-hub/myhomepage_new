@@ -1,4 +1,5 @@
 "use strict";
+
 /* --- START jQuery / UI --- */
 $(":radio").checkboxradio();
 $("#filter_button").button();
@@ -21,8 +22,8 @@ for (let i = 0; i < coll.length; i++) {
 /* --- END collapsible JS --- */
 
 
-/* --- START TOGGLE MENU --- */
+/* --- START TOGGLE MENU BUTTON jQuery --- */
 $("#toggle_menu_btn").click(function(){
     $(".main_menu").toggle();
 });
-/* --- END TOGGLE MENU --- */
+/* --- END TOGGLE MENU jQuery --- */
