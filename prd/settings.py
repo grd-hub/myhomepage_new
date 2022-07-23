@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 
+from decouple import config
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -20,19 +22,26 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-%16vdr#yvh9k0a)a2+(i=mszswr^(1mnu%_)*)dc!q@m9so1j1'
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 # "192.168.178.20",
 # python manage.py runserver 0.0.0.0:8000
-ALLOWED_HOSTS = ["127.0.0.1", ".pythonanywhere.com", "192.168.178.20"]
+ALLOWED_HOSTS = ["127.0.0.1", ".pythonanywhere.com"]
 
+# Default email address to use for various automated correspondence from the site manager(s).
+# This doesn’t include error messages sent to ADMINS and MANAGERS; for that, see SERVER_EMAIL
+
+DEFAULT_FROM_EMAIL = 'sendmail@localhost'
+
+SERVER_EMAIL = 'errormail@localhost'
 
 # Application definition
 
 INSTALLED_APPS = [
+    'whitenoise.runserver_nostatic',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -46,6 +55,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -110,12 +120,11 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'CET'
 
 USE_I18N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
@@ -126,3 +135,52 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# <------------------------------------------------- HTTPS ------------------------------------------------->
+# SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https') proxy?
+# SECURE_SSL_REDIRECT = True
+# CSRF_COOKIE_SECURE = True
+# SESSION_COOKIE_SECURE = True
+# HTTP Strict Transport Security (HSTS)
+# SECURE_HSTS_SECONDS = 3600 -> one hour | make one year!
+# SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+# SECURE_HSTS_PRELOAD = True
+# <------------------------------------------------- HTTPS ------------------------------------------------->
+
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+SECURE_SSL_REDIRECT = True
+
+CSRF_COOKIE_SECURE = True
+
+SESSION_COOKIE_SECURE = True
+
+SECURE_HSTS_SECONDS = 3600
+
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+
+SECURE_HSTS_PRELOAD = True
+
+# django-csp:  Django content security policy global settings
+
+# https://django-csp.readthedocs.io/en/latest/configuration.html#configuration-chapter
+
+# CSP_FONT_SRC . . .
+
+CSP_DEFAULT_SRC = ("'self'",)
+
+CSP_STYLE_SRC = ("'self'",)
+
+CSP_SCRIPT_SRC = ("'self'",)
+
+CSP_IMG_SRC = ("'self'",)
+
+CSP_FRAME_ANCESTORS = ("'self'",)
+
+CSP_BASE_URI = ("'self'",)
+
+CSP_FORM_ACTION = ("'self'",)
+
+CSP_OBJECT_SRC = ("'none'",)

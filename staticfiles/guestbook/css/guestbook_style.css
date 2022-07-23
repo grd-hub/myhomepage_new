@@ -1,0 +1,388 @@
+/* --- START ELEMENTS --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html {
+    scroll-behavior: smooth;
+}
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    /*background-image: url({% static 'guestbook/img/caio-1920x1080.jpg' %});*/
+    background-image: url('caio-1920x1080.jpg');
+    background-attachment: fixed;
+    background-size: 100% 100%;
+    z-index: -10;
+}
+input {
+    width: 100%;
+    height: 33px;
+    border-style: solid none solid none;
+    text-align: center;
+}
+label {
+    width: 100%;
+    height: 33px;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+textarea {
+    width: 380px;
+    height: 400px;
+}
+/* --- END ELEMENTS --- */
+
+
+/* --- START STANDARDS --- */
+.css-grid {
+    display: grid;
+    grid-template-columns: auto;
+    grid-gap: 1rem;
+}
+.ta-center {
+    text-align: center;
+}
+.ta-left {
+    text-align: left;
+}
+.ta-justify {
+    text-align: justify;
+}
+/* --- END STANDARDS --- */
+
+
+/* --- START MESSAGES --- */
+.alert {
+  padding: 20px;
+  background-color: Crimson;
+  color: white;
+}
+
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.closebtn:hover {
+  color: black;
+}
+/* --- END MESSAGES --- */
+
+
+/* --- START PAGE AREAS --- */
+.item_header {
+    grid-area: header;
+    position: sticky;
+    top: 0;
+}
+.item_main {
+    grid-area: main;
+}
+/* --- END PAGE AREAS --- */
+
+
+/* --- START COLLAPSIBLE --- */
+.collapsible {
+    background-color: dodgerblue;
+    color: white;
+    cursor: pointer;
+    height: 33px;
+    width: 100%;
+    border: none;
+    text-align: center;
+    outline: none;
+    font-size: 1rem;
+    margin-top: 1rem;
+}
+.active, .collapsible:hover {
+    background-color: #ccc;
+}
+.content {
+    display: none;
+    height: 400px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    z-index: 1;
+}
+/* --- END COLLAPSIBLE --- */
+
+
+/* --- START MAIN BUTTONS ---  */
+.main_link {
+    display: block;
+    text-decoration: none;
+    margin-top: 1rem;
+}
+.main_link p:hover {
+    background-color: #ccc;
+}
+.main_link p {
+    color: white;
+    background: dodgerblue;
+    height: 33px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.main_button {
+    cursor: pointer;
+    margin-top: 1rem;
+    height: 33px;
+    width: 100%;
+    border: none;
+    background: dodgerblue;
+    font-size: 1rem;
+    color: white;
+}
+.main_button:hover {
+    background-color: #ccc;
+}
+.toggle_menu_btn {
+    cursor: pointer;
+    margin-top: 1rem;
+    height: 33px;
+    width: 100%;
+    border: none;
+    background: dodgerblue;
+    font-size: 1rem;
+    color: white;
+}
+.toggle_menu_btn:hover {
+    background-color: #ccc;
+}
+/* --- END MAIN BUTTONS ---  */
+
+
+/* --- START FILTER AREA --- */
+#filter {
+    border: 1px solid black;
+    width: 50%;
+    margin: 0 auto;
+    z-index: 1;
+}
+.p_header {
+    height: 33px;
+    background-color: hsl(210, 100%, 99%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#filter_button {
+    width: 100%;
+}
+/* --- END FILTER AREA --- */
+
+
+/* --- START CSS GRID BASE --- */
+#css_grid_base {
+    display: grid;
+    grid-template-areas:
+        'header header header header header header header header header header header header'
+        'main main main main main main main main main main main main';
+    gap: 1rem;
+    margin: 0 1rem 1rem 1rem;
+}
+/* --- END CSS GRID BASE --- */
+
+
+/* --- START guestbook-card --- */
+.guestbook-card {
+    background-color: white;
+    border: 1px solid black;
+}
+.guestbook-card h2 {
+    padding: 8px 8px 4px 8px;
+}
+.guestbook-card p {
+    padding: 8px;
+}
+.guestbook-card a {
+    display: inline-block;
+    text-decoration: none;
+    margin: 2px 8px;
+    color: brown;
+}
+.guestbook-link:hover {
+    background-color: #ccc;
+}
+.guestbook-author {
+    color: DarkBlue;
+    font-size: 1.1rem;
+}
+.guestbook-link {
+    color: white;
+    background: dodgerblue;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.spacer {
+    height: 1rem;
+}
+/* --- END guestbook-card --- */
+
+
+/* --- START DETAIL VIEW ---  */
+#detail_view {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border: 1px solid black;
+
+    align-items: center;
+    justify-content: center;
+    margin: 1rem 1rem;
+    text-align: justify;
+}
+#detail_view p {
+    margin: 1rem 1rem;
+}
+/* --- END DETAIL VIEW ---  */
+
+
+/* --- START CREATE VIEW  --- */
+#create_view {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 10px;
+    align-items: center;
+    justify-content: center;
+    margin: 1rem 1rem;
+    text-align: justify;
+}
+#create_view p {
+    margin: 1rem 1rem;
+}
+#create_button {
+    width: 330px;
+    margin-bottom: 1rem;
+    color: white;
+    background: dodgerblue;
+    border: none;
+}
+#create_button:hover {
+    background-color: #ccc;
+}
+/* --- END CREATE VIEW  --- */
+
+
+/* --- START UPDATE VIEW --- */
+#update_view {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 10px;
+    align-items: center;
+    justify-content: center;
+    margin: 1rem 1rem;
+    text-align: justify;
+}
+#update_view p {
+    margin: 1rem 1rem;
+}
+#update_button {
+    width: 330px;
+    margin-bottom: 1rem;
+    color: white;
+    background: dodgerblue;
+    border: none;
+}
+#update_button:hover {
+    background-color: #ccc;
+}
+/* --- END UPDATE VIEW --- */
+
+
+/* --- START DELETE VIEW --- */
+#delete_view {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border: 1px solid black;
+    align-items: center;
+    justify-content: center;
+    margin: 1rem 1rem;
+    text-align: justify;
+}
+#delete_view p {
+    margin: 1rem 1rem;
+}
+#delete_button {
+    width: 330px;
+    margin-bottom: 1rem;
+    color: white;
+    background: dodgerblue;
+    border: none;
+}
+#delete_button:hover {
+    background-color: #ccc;
+}
+/* --- END DELETE VIEW --- */
+
+
+/* --- START PAGINATION --- */
+#pagination {
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto auto auto 1rem;
+}
+#pagination a {
+    display: flex;
+    text-decoration: none;
+    font-size: 1.1rem;
+    margin-right: 1px;
+    color: white;
+}
+.page-link-selected {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: dodgerblue;
+    border: 1px solid white;
+    height: 34px;
+    width: 34px;
+}
+.page-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 34px;
+    width: 34px;
+}
+.page-link-bg {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 34px;
+    width: 54px;
+}
+/* --- END PAGINATION --- */
+
+
+.go_back_button {
+    display: block;
+    margin: 1rem 1rem;
+    text-decoration: none;
+}
+
+
+@media only screen and (max-width: 768px) {
+    .content {
+        height: 350px;
+    }
+    textarea {
+        width: 345px;
+    }
+}
