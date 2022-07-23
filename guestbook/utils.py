@@ -1,28 +1,35 @@
 from .filters import GuestbookFilter
+
 from .models import Guestbook
+
 from django.core.paginator import Paginator
+
 import random
 
 
 def check_order_group(request):
+
     if request.GET['order_group'] == 'author':
         filtered_guestbook = GuestbookFilter(
             request.GET,
             queryset=Guestbook.objects.all().order_by('author')
         )
         order_radio_button = 'author'
+
     elif request.GET['order_group'] == 'date_ascending':
         filtered_guestbook = GuestbookFilter(
             request.GET,
             queryset=Guestbook.objects.all().order_by('date_create')
         )
         order_radio_button = 'date_ascending'
+
     elif request.GET['order_group'] == 'date_descending':
         filtered_guestbook = GuestbookFilter(
             request.GET,
             queryset=Guestbook.objects.all().order_by('-date_create')
         )
         order_radio_button = 'date_descending'
+
     else:
         filtered_guestbook = GuestbookFilter(
             request.GET,
@@ -37,18 +44,23 @@ def check_entries_per_page(request, filtered_guestbook, sum_all_entries):
     if request.GET['entries_per_page'] == '8':
         paginated_filtered_guestbook = Paginator(filtered_guestbook.qs, 8)
         entries_per_page = '8'
+
     elif request.GET['entries_per_page'] == '16':
         paginated_filtered_guestbook = Paginator(filtered_guestbook.qs, 16)
         entries_per_page = '16'
+
     elif request.GET['entries_per_page'] == '32':
         paginated_filtered_guestbook = Paginator(filtered_guestbook.qs, 32)
         entries_per_page = '32'
+
     elif request.GET['entries_per_page'] == '64':
         paginated_filtered_guestbook = Paginator(filtered_guestbook.qs, 64)
         entries_per_page = '64'
+
     elif request.GET['entries_per_page'] == '---------':
         paginated_filtered_guestbook = Paginator(filtered_guestbook.qs, sum_all_entries)
         entries_per_page = '---------'
+
     else:
         paginated_filtered_guestbook = Paginator(filtered_guestbook.qs, 8)
         entries_per_page = '8'
@@ -59,8 +71,10 @@ def check_entries_per_page(request, filtered_guestbook, sum_all_entries):
 def check_page_view(request):
     if request.GET['view_group'] == 'listview':
         page_view = 'listview'
+
     elif request.GET['view_group'] == 'mosaicview':
         page_view = 'mosaicview'
+
     else:
         page_view = 'listview'
 
@@ -68,7 +82,6 @@ def check_page_view(request):
 
 
 def add_fifty():
-
     author = [
         'Robert N. Charrette', 'Nigel Findley', 'Chris Kubasik', 'Carl Sargent', 'Hans Joachim Alpers', 'Tom Dowd',
         'Nyx Smith', 'Marc Gascoigne', 'Caroline Spector', 'Mel Odom', 'Jak Koke', 'Lisa Smedman', 'Nick Polotta',
@@ -76,6 +89,7 @@ def add_fifty():
         'Ivan Nedic', 'Maike Hallmann', 'Lara Möller', 'André Wiesler', 'Sebastian Schäfer', 'Boris Koch',
         'Christian Riesslegger'
     ]
+
     title = [
         'Never Deal with a Dragon - Secrets of Power - Volume 1',
         'Choose Your Enemies Carefully - Secrets of Power - Volume 2',
@@ -87,6 +101,7 @@ def add_fifty():
         'Just Compensation', 'Black Madonna', 'Preying for Keeps', 'Dead Air', 'The Lucifer Deck', 'Steel Rain',
         'Shadowboxer'
     ]
+
     text = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et' \
            ' dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip' \
            ' ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu' \
@@ -94,15 +109,21 @@ def add_fifty():
            ' mollit anim id est laborum.'
 
     for new_entry in range(50):
+
         new_random_int = random.randint(0, 25)
+
         new_random_int_2 = random.randint(0, 26)
+
         write_entry = Guestbook(author=author[new_random_int],
                                 title=title[new_random_int_2],
                                 text=text,
                                 is_generic=True)
+
         write_entry.save()
 
 
 def delete_all_generic_entries():
+
     delete_entries = Guestbook.objects.filter(is_generic=True)
+
     delete_entries.delete()
